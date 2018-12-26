@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd /app/ginmusic
+
+# Link volumed data with app data
+ln -sfn /data/ginmusic/log  ./log
+ln -sfn /data/ginmusic/data ./data

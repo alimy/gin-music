@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if test -f ./setup; then
+    source ./setup
+fi
+
+export USER=ginmusic
+exec gosu $USER /app/ginmusci/gin-music serv --config /data/ginmusic/conf/app.toml
