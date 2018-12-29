@@ -6,8 +6,6 @@
 // assets/config/app.toml
 // DO NOT EDIT!
 
-// +build release
-
 package assets
 
 import (
@@ -88,7 +86,7 @@ func assetsReadmeMd() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/README.md", size: 33, mode: os.FileMode(436), modTime: time.Unix(1545785454, 0)}
+	info := bindataFileInfo{name: "assets/README.md", size: 33, mode: os.FileMode(436), modTime: time.Unix(1545792672, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -133,7 +131,7 @@ func assetsConfigReadmeMd() (*asset, error) {
 	return a, nil
 }
 
-var _assetsConfigAppToml = "\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x01\x00\x00\xff\xff\x00\x00\x00\x00\x00\x00\x00\x00"
+var _assetsConfigAppToml = "\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2c\xcd\xb1\x0a\xc2\x30\x10\x87\xf1\x3d\x4f\x71\x64\x6f\x08\xce\x56\x74\xd7\x27\x28\x1d\xc2\x79\xb6\x7f\x48\x2e\x21\x49\x0b\x7d\x7b\xb1\xb8\x7e\xc3\xf7\x9b\x42\x29\x11\x1c\x3a\xb2\xce\x46\x43\x12\x1a\xc9\x2e\xd0\x21\x6d\x0d\x6c\xcd\x2e\xb5\x21\xeb\xaf\x7a\xe7\x9d\xb7\x26\x6c\x7d\xcd\xb5\xd1\x48\x93\x7d\x81\xd7\x20\x91\x9e\xa0\x6b\x88\x48\xc7\x7d\x41\x44\x3f\x9c\x4a\xbf\xd9\xd9\xbc\xa5\x71\x45\xe9\xff\xc3\xf9\x24\xe8\x27\xa7\x53\xa4\x26\x75\x07\x8b\x35\x11\x2c\xda\x4e\xfc\x51\x02\xaf\x32\x5c\x9c\xb7\xdf\x00\x00\x00\xff\xff\x9e\x3a\x85\x45\x9e\x00\x00\x00"
 
 func assetsConfigAppTomlBytes() ([]byte, error) {
 	return bindataRead(
@@ -148,7 +146,7 @@ func assetsConfigAppToml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/config/app.toml", size: 0, mode: os.FileMode(436), modTime: time.Unix(1545785044, 0)}
+	info := bindataFileInfo{name: "assets/config/app.toml", size: 158, mode: os.FileMode(436), modTime: time.Unix(1546063889, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
