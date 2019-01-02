@@ -15,14 +15,8 @@ const (
 )
 
 var (
-	config = &Config{}
+	config = &serve.Config{}
 )
-
-type Config struct {
-	CertFile string
-	KeyFile string
-	EnableHttps bool
-}
 
 func init() {
 	serveCmd := &cobra.Command{

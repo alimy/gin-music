@@ -2,7 +2,6 @@ package serve
 
 import (
 	"github.com/alimy/gin-music/api/v1"
-	"github.com/alimy/gin-music/module/serve/cmd"
 	"github.com/alimy/gin-music/pkg/portal"
 	"github.com/gin-gonic/gin"
 	"github.com/unisx/logus"
@@ -10,7 +9,13 @@ import (
 	"time"
 )
 
-func StartService(config *cmd.Config) {
+type Config struct {
+	CertFile    string
+	KeyFile     string
+	EnableHttps bool
+}
+
+func StartService(config *Config) {
 	e := gin.Default()
 
 	// Install portal router
