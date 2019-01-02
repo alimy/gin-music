@@ -14,13 +14,13 @@ info:
 paths:
   /albums:
     get:
-      summary: search albums
-      operationId: searchAlbums
+      summary: get albums
+      operationId: getAlbums
       description: |
-        Search available albums in the system
+        Get available albums in the system
       responses:
         '200':
-          description: fetch albums results
+          description: get albums results
           content:
             application/json:
               schema:
@@ -65,9 +65,9 @@ paths:
         description: Albums item to update
   '/{albumId}':
     get:
-      summary: Find album by ID
+      summary: Get album by ID
       description: Returns a single album
-      operationId: findAlbumById
+      operationId: getAlbumById
       parameters:
         - name: albumId
           in: path
