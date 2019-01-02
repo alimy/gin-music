@@ -2,6 +2,7 @@ package serve
 
 import (
 	"github.com/alimy/gin-music/api/v1"
+	"github.com/alimy/gin-music/module/serve/cmd"
 	"github.com/alimy/gin-music/pkg/portal"
 	"github.com/gin-gonic/gin"
 	"github.com/unisx/logus"
@@ -9,7 +10,7 @@ import (
 	"time"
 )
 
-func StartService() {
+func StartService(config *cmd.Config) {
 	e := gin.Default()
 
 	// Install portal router
@@ -33,6 +34,12 @@ func StartService() {
 		ReadTimeout:  15 * time.Second,
 	}
 
-	logus.Info("listen and serve in :8080")
-	server.ListenAndServe()
+	// Start http.Server
+	if config.EnableHttps {
+		logus.Info("listen and serve in https://:8080")
+		server.ListenAndServeTLS(config.CertFile, config.KeyFile)
+	} else {
+		logus.Info("listen and serve in http://:8080")
+		server.ListenAndServe()
+	}
 }

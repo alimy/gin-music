@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/alimy/gin-music/cmd"
 	"github.com/alimy/gin-music/module/serve"
-	_ "github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
 )
 
@@ -16,11 +15,14 @@ const (
 )
 
 var (
-	muxType     string
-	certFile    string
-	keyFile     string
-	enableHttps bool
+	config = &Config{}
 )
+
+type Config struct {
+	CertFile string
+	KeyFile string
+	EnableHttps bool
+}
 
 func init() {
 	serveCmd := &cobra.Command{
@@ -31,15 +33,14 @@ func init() {
 	}
 
 	// Parse flags for serveCmd
-	serveCmd.Flags().StringVarP(&certFile, "cert", "c", certFilePathDefault, "certificate path used in https connect")
-	serveCmd.Flags().StringVarP(&keyFile, "key", "k", keyFilePathDefault, "key path used in https connect")
-	serveCmd.Flags().BoolVarP(&enableHttps, "https", "s", false, "whether use https serve connect")
+	serveCmd.Flags().StringVarP(&config.CertFile, "cert", "c", certFilePathDefault, "certificate path used in https connect")
+	serveCmd.Flags().StringVarP(&config.KeyFile, "key", "k", keyFilePathDefault, "key path used in https connect")
+	serveCmd.Flags().BoolVarP(&config.EnableHttps, "https", "s", false, "whether use https serve connect")
 
 	// Register serveCmd as sub-command
 	cmd.Register(serveCmd)
 }
 
 func serveRun(cmd *cobra.Command, args []string) {
-	// TODO
-	serve.StartService()
+	serve.StartService(config)
 }
