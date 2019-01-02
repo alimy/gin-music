@@ -10,7 +10,7 @@ var (
 	ApiCreateAlbums     = apiPut("albums")             // create an albums
 	ApiUpdateAlbums     = apiPost("albums")            // update an albums
 	ApiGetAlbumsById    = apiGet("albums/:albumId")    // Get album by Id
-	ApiDeleteAlbumsById = apiDelete("albums/:albumId") //Delete an albums by Id
+	ApiDeleteAlbumsById = apiDelete("albums/:albumId") // Delete an albums by Id
 )
 
 type Operation struct {

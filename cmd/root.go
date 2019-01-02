@@ -7,8 +7,8 @@ import (
 var (
 	rootCmd = &cobra.Command{
 		Use:   "gin-music",
-		Short: "music infomation service",
-		Long:  `music infomation provider service`,
+		Short: "music information service",
+		Long:  `music information provider service`,
 	}
 )
 

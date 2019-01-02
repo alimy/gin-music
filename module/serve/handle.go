@@ -6,34 +6,34 @@ import (
 	"net/http"
 )
 
-func getAlbums(ctx *gin.Context) {
+func getAlbums(context *gin.Context) {
 	// TODO
 	logus.Debug("get albums")
-	ctx.String(http.StatusOK, "Albums")
+	context.String(http.StatusOK, "Albums")
 }
 
-func createAlbums(ctx *gin.Context) {
+func createAlbums(context *gin.Context) {
 	// TODO
 	logus.Debug("create albums")
-	ctx.String(http.StatusCreated, "Albums item to update")
+	context.String(http.StatusCreated, "Albums item to update")
 }
 
-func updateAlbums(ctx *gin.Context) {
+func updateAlbums(context *gin.Context) {
 	// TODO
 	logus.Debug("update albums")
-	ctx.String(http.StatusCreated, "Albums item to update")
+	context.String(http.StatusCreated, "Albums item to update")
 }
 
-func getAlbumsById(ctx *gin.Context) {
+func getAlbumsById(context *gin.Context) {
 	// TODO
-	albumId := ctx.Param("albumId")
+	albumId := context.Param("albumId")
 	logus.Debug("get albums by id", logus.String("albumId", albumId))
-	ctx.String(http.StatusOK, "albums")
+	context.String(http.StatusOK, "albums")
 }
 
-func deleteAlbumsById(ctx *gin.Context) {
+func deleteAlbumsById(context *gin.Context) {
 	// TODO
-	albumId := ctx.Param("albumId")
+	albumId := context.Param("albumId")
 	logus.Info("delete albums", logus.String("albumId", albumId))
-	ctx.String(http.StatusOK, "Item deleted")
+	context.String(http.StatusOK, "Item deleted")
 }

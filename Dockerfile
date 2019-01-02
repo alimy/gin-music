@@ -22,7 +22,7 @@ COPY hack/docker/nsswitch.conf /etc/nsswitch.conf
 
 WORKDIR /app/ginmusic
 COPY hack/docker ./docker
-COPY --from=binaryBuilder /go/src/github.com/alimy/gin-music/go-music .
+COPY --from=binaryBuilder /go/src/github.com/alimy/gin-music/gin-music .
 
 RUN ./docker/finalize.sh
 

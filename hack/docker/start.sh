@@ -12,8 +12,8 @@ create_volume_subfolder() {
 setids() {
     PUID=${PUID:-1000}
     PGID=${PGID:-1000}
-    groupmod -o -g "$PGID" gin
-    usermod -o -u "$PUID" gin
+    groupmod -o -g "$PGID" ginmusic
+    usermod -o -u "$PUID" ginmusic
 }
 
 setids
