@@ -21,7 +21,7 @@ var (
 		Use: "version",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Printf("%s (APIVersion:%s)\nBuildTime:%s\nBuildGitSHA:%s\n",
-				Version, api.Version, BuildTime, GitHash)
+				Version, api.ApiVersion, BuildTime, GitHash)
 		},
 	}
 )

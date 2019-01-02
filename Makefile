@@ -19,16 +19,17 @@ fmt:
 bindata: $(GENERATED)
 
 pkg/assets/bindata.go: $(ASSETS_DATA_FILES)
-	rm -rf pkg/assets/
+	rm -rf $@
 	go-bindata -nomemcopy -pkg=assets \
+	     -prefix=assets \
          -debug=$(if $(findstring debug,$(TAGS)),true,false) \
          -o=$@ assets/...
 	gofmt -s -w pkg/assets
 
-
 pkg/portal/bindata.go: $(PORTAL_DATA_FILES)
-	rm -rf pkg/portal
-	go-bindata -nomemcopy -pkg=assets  -tags=$(TAGS) \
+	rm -rf $@
+	go-bindata -nomemcopy -pkg=portal \
+	     -prefix=portal \
          -debug=$(if $(findstring debug,$(TAGS)),true,false) \
          -o=$@ portal/...
 	gofmt -s -w pkg/portal
@@ -41,4 +42,4 @@ clean:
 	rm -f gin-music
 
 distclean: clean
-	rm -rf pkg/assets/ pkg/portal/
+	rm -rf pkg/assets/bindata.go pkg/portal/bindata.go
