@@ -1,4 +1,4 @@
-.PHONY: default build bindata redoc fmt clean distclean
+.PHONY: default build bindata api fmt clean distclean
 
 TAGS = release
 PORTAL_DATA_FILES := $(shell find portal | sed 's/  /\\ /g')
@@ -33,7 +33,7 @@ pkg/portal/bindata.go: $(PORTAL_DATA_FILES)
          -o=$@ portal/...
 	gofmt -s -w pkg/portal
 
-redoc:
+api:
 	docker run -it --rm -p 8080:80 -v $(PWD)/api/openapi.yaml:/usr/share/nginx/html/openapi.yaml -e SPEC_URL=openapi.yaml redocly/redoc
 
 clean:
