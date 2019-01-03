@@ -1,9 +1,9 @@
 angular.module('albums', ['ngResource', 'ui.bootstrap']).
     factory('Albums', function ($resource) {
-        return $resource('albums');
+        return $resource('v1/albums/');
     }).
     factory('Album', function ($resource) {
-        return $resource('albums/:id', {id: '@id'});
+        return $resource('v1/albums/:id', {id: '@id'});
     }).
     factory("EditorStatus", function () {
         var editorEnabled = {};
@@ -50,7 +50,7 @@ function AlbumsController($scope, $modal, Albums, Album, Status) {
 
     $scope.addAlbum = function () {
         var addModal = $modal.open({
-            templateUrl: 'templates/albumForm.html',
+            templateUrl: 'static/templates/albumForm.html',
             controller: AlbumModalController,
             resolve: {
                 album: function () {
@@ -69,7 +69,7 @@ function AlbumsController($scope, $modal, Albums, Album, Status) {
 
     $scope.updateAlbum = function (album) {
         var updateModal = $modal.open({
-            templateUrl: 'templates/albumForm.html',
+            templateUrl: 'static/templates/albumForm.html',
             controller: AlbumModalController,
             resolve: {
                 album: function() {
@@ -99,7 +99,7 @@ function AlbumsController($scope, $modal, Albums, Album, Status) {
     };
 
     $scope.setAlbumsView = function (viewName) {
-        $scope.albumsView = "templates/" + viewName + ".html";
+        $scope.albumsView = "static/templates/" + viewName + ".html";
     };
 
     $scope.init = function() {

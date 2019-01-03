@@ -2,49 +2,47 @@ package serve
 
 import (
 	"github.com/alimy/gin-music/api/v1"
-	"github.com/alimy/gin-music/pkg/portal"
 	"github.com/gin-gonic/gin"
 	"github.com/unisx/logus"
 	"net/http"
-	"time"
 )
 
-type Config struct {
-	CertFile    string
-	KeyFile     string
-	EnableHttps bool
+func init() {
+	api.Register(api.ApiGetAlbums, getAlbums)
+	api.Register(api.ApiCreateAlbums, createAlbums)
+	api.Register(api.ApiUpdateAlbums, updateAlbums)
+	api.Register(api.ApiGetAlbumsById, getAlbumsById)
+	api.Register(api.ApiDeleteAlbumsById, deleteAlbumsById)
 }
 
-func StartService(config *Config) {
-	e := gin.Default()
+func getAlbums(context *gin.Context) {
+	// TODO
+	logus.Debug("get albums")
+	context.String(http.StatusOK, "get albums")
+}
 
-	// Install portal router
-	portal.InstallWith(e)
+func createAlbums(context *gin.Context) {
+	// TODO
+	logus.Debug("create albums")
+	context.String(http.StatusCreated, "Albums item created")
+}
 
-	// Install api router
-	api.InstallWith(e, api.OperationIds{
-		api.ApiGetAlbums:        getAlbums,
-		api.ApiCreateAlbums:     createAlbums,
-		api.ApiUpdateAlbums:     updateAlbums,
-		api.ApiGetAlbumsById:    getAlbumsById,
-		api.ApiDeleteAlbumsById: deleteAlbumsById,
-	})
+func updateAlbums(context *gin.Context) {
+	// TODO
+	logus.Debug("update albums")
+	context.String(http.StatusCreated, "Albums item updated")
+}
 
-	// Setup http.Server
-	server := &http.Server{
-		Handler: e,
-		Addr:    "127.0.0.1:8080",
-		// Good practice: enforce timeouts for servers you create!
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
-	}
+func getAlbumsById(context *gin.Context) {
+	// TODO
+	albumId := context.Param("albumId")
+	logus.Debug("get albums by id", logus.String("albumId", albumId))
+	context.String(http.StatusOK, "get albums by id")
+}
 
-	// Start http.Server
-	if config.EnableHttps {
-		logus.Info("listen and serve in https://:8080")
-		server.ListenAndServeTLS(config.CertFile, config.KeyFile)
-	} else {
-		logus.Info("listen and serve in http://:8080")
-		server.ListenAndServe()
-	}
+func deleteAlbumsById(context *gin.Context) {
+	// TODO
+	albumId := context.Param("albumId")
+	logus.Info("delete albums", logus.String("albumId", albumId))
+	context.String(http.StatusOK, "Albums item deleted")
 }

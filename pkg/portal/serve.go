@@ -1,20 +1,27 @@
+// +build portal
+
 package portal
 
 import (
+	"github.com/alimy/gin-music/api/v1"
 	"github.com/elazarl/go-bindata-assetfs"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
-func InstallWith(r gin.IRouter) {
-	handler := createStaticHandler("/",
-		&assetfs.AssetFS{
-			Asset:     Asset,
-			AssetDir:  AssetDir,
-			AssetInfo: AssetInfo})
+func init() {
+	assetFS := &assetfs.AssetFS{
+		Asset:     Asset,
+		AssetDir:  AssetDir,
+		AssetInfo: AssetInfo}
 
-	r.GET("/", handler)
-	r.HEAD("/", handler)
+	mainHandler := createStaticHandler("/", assetFS)
+	staticHandler := createStaticHandler("/static", assetFS)
+
+	api.Register(api.ApiGetMainPage, mainHandler)
+	api.Register(api.ApiHeadMainPage, mainHandler)
+	api.Register(api.ApiGetStaticAssets, staticHandler)
+	api.Register(api.ApiHeadStaticAssets, staticHandler)
 }
 
 func createStaticHandler(path string, fs http.FileSystem) gin.HandlerFunc {

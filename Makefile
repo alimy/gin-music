@@ -1,6 +1,6 @@
-.PHONY: default build bindata api fmt clean distclean
+.PHONY: default build serve bindata api fmt clean distclean
 
-TAGS = release
+TAGS = debug portal
 PORTAL_DATA_FILES := $(shell find portal | sed 's/  /\\ /g')
 ASSETS_DATA_FILES := $(shell find assets | sed 's/  /\\ /g')
 GENERATED := pkg/assets/bindata.go pkg/portal/bindata.go
@@ -11,7 +11,10 @@ LDFLAGS += -X "github.com/alimy/gin-music/version.GitHash=$(shell git rev-parse 
 default: build
 
 build: fmt bindata
-	go build -ldflags '$(LDFLAGS)' -tags '$(TAGS)'
+	go build -ldflags '$(LDFLAGS)' -tags '$(TAGS)' -o gin-music
+
+serve: fmt bindata
+	go run -ldflags '$(LDFLAGS)' -tags '$(TAGS)' github.com/alimy/gin-music serve
 
 fmt:
 	go fmt ./...
@@ -28,7 +31,7 @@ pkg/assets/bindata.go: $(ASSETS_DATA_FILES)
 
 pkg/portal/bindata.go: $(PORTAL_DATA_FILES)
 	rm -rf $@
-	go-bindata -nomemcopy -pkg=portal \
+	go-bindata -nomemcopy -pkg=portal -tags=portal \
 	     -prefix=portal \
          -debug=$(if $(findstring debug,$(TAGS)),true,false) \
          -o=$@ portal/...
