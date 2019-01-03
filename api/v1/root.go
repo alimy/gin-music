@@ -11,6 +11,7 @@ const (
 	ApiHeadMainPage            // head main page
 	ApiGetStaticAssets         // get static assets
 	ApiHeadStaticAssets        // head static assets
+	ApiGetAppInfo              // get application information
 	ApiGetAlbums               // get albums
 	ApiCreateAlbums            // create an albums
 	ApiUpdateAlbums            // update an albums
@@ -32,6 +33,7 @@ var OperationIds = map[int]*Operation{
 	ApiGetMainPage:      apiGet("/", "/"),
 	ApiGetStaticAssets:  apiGet("/", "/static/*filepath"),
 	ApiHeadStaticAssets: apiHead("/", "/static/*filepath"),
+	ApiGetAppInfo:       apiGet(ApiVersion, "/appinfo"),
 	ApiGetAlbums:        apiGet(ApiVersion, "/albums/"),
 	ApiCreateAlbums:     apiPut(ApiVersion, "/albums/"),
 	ApiUpdateAlbums:     apiPost(ApiVersion, "/albums/"),

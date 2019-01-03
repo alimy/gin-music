@@ -8,11 +8,18 @@ import (
 )
 
 func init() {
+	api.Register(api.ApiGetAppInfo, getAppInfo)
 	api.Register(api.ApiGetAlbums, getAlbums)
 	api.Register(api.ApiCreateAlbums, createAlbums)
 	api.Register(api.ApiUpdateAlbums, updateAlbums)
 	api.Register(api.ApiGetAlbumsById, getAlbumsById)
 	api.Register(api.ApiDeleteAlbumsById, deleteAlbumsById)
+}
+
+func getAppInfo(context *gin.Context) {
+	// TODO
+	logus.Debug("get application information")
+	context.String(http.StatusOK, "get application information")
 }
 
 func getAlbums(context *gin.Context) {
