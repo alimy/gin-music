@@ -15,9 +15,10 @@ package main
 
 import (
 	"github.com/alimy/gin-music/cmd"
+	"github.com/unisx/logus"
+
 	_ "github.com/alimy/gin-music/module/serve/cmd"
 	_ "github.com/alimy/gin-music/version"
-	"github.com/unisx/logus"
 )
 
 func main() {

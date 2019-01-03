@@ -27,8 +27,8 @@ var (
 func init() {
 	serveCmd := &cobra.Command{
 		Use:   "serve",
-		Short: "start to okmall service",
-		Long:  "this cmd will start a https server to provide okmall service",
+		Short: "start to ginMusic service",
+		Long:  "this cmd will start a https server to provide ginMusic service",
 		Run:   serveRun,
 	}
 
