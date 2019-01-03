@@ -6,8 +6,7 @@ This project is inspiration like [spring-music](https://github.com/cloudfoundry-
 ```bash
 $ git clone https://github.com/alimy/gin-music
 $ cd gin-music
-$ make build
-$ ./gin-music serve
+$ make serve
 ```
 
 ### OpenApi documents
