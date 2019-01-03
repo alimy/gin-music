@@ -5,40 +5,12 @@ import (
 	"net/http"
 )
 
-const (
-	// OperationIds for api handler
-	ApiGetMainPage      = iota // get main page
-	ApiHeadMainPage            // head main page
-	ApiGetStaticAssets         // get static assets
-	ApiHeadStaticAssets        // head static assets
-	ApiGetAppInfo              // get application information
-	ApiGetAlbums               // get albums
-	ApiCreateAlbums            // create an albums
-	ApiUpdateAlbums            // update an albums
-	ApiGetAlbumsById           // Get album by Id
-	ApiDeleteAlbumsById        // Delete an albums by Id
-)
-
 // Operation is the Api handler info
 type Operation struct {
 	Group   string          // api's url prefix
 	Path    string          // api's url relative path
 	Method  string          // api's http method
 	Handler gin.HandlerFunc // api's handler
-}
-
-// OperationIds contains id-operation map used for install and register handler info
-var OperationIds = map[int]*Operation{
-	ApiHeadMainPage:     apiHead("/", "/"),
-	ApiGetMainPage:      apiGet("/", "/"),
-	ApiGetStaticAssets:  apiGet("/", "/static/*filepath"),
-	ApiHeadStaticAssets: apiHead("/", "/static/*filepath"),
-	ApiGetAppInfo:       apiGet(ApiVersion, "/appinfo"),
-	ApiGetAlbums:        apiGet(ApiVersion, "/albums/"),
-	ApiCreateAlbums:     apiPut(ApiVersion, "/albums/"),
-	ApiUpdateAlbums:     apiPost(ApiVersion, "/albums/"),
-	ApiGetAlbumsById:    apiGet(ApiVersion, "/albums/:albumId"),
-	ApiDeleteAlbumsById: apiDelete(ApiVersion, "/albums/:albumId"),
 }
 
 // Register add id-handler map for OperationIds
