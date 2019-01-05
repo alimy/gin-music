@@ -12,18 +12,21 @@ const (
 	ApiUpdateAlbums            // Update an albums
 	ApiGetAlbumsById           // Get album by Id
 	ApiDeleteAlbumsById        // Delete an albums by Id
+
+	groupStatic = "static"   // Static assets group
+	groupApi    = ApiVersion // OpenAPI group
 )
 
 // OperationIds contains id-operation map used for install and register handler info
 var OperationIds = map[int]*Operation{
-	ApiHeadMainPage:     apiHead("/", "/"),
-	ApiGetMainPage:      apiGet("/", "/"),
-	ApiGetStaticAssets:  apiGet("/", "/static/*filepath"),
-	ApiHeadStaticAssets: apiHead("/", "/static/*filepath"),
-	ApiGetAppInfo:       apiGet(ApiVersion, "/appinfo"),
-	ApiGetAlbums:        apiGet(ApiVersion, "/albums/"),
-	ApiCreateAlbums:     apiPut(ApiVersion, "/albums/"),
-	ApiUpdateAlbums:     apiPost(ApiVersion, "/albums/"),
-	ApiGetAlbumsById:    apiGet(ApiVersion, "/albums/:albumId"),
-	ApiDeleteAlbumsById: apiDelete(ApiVersion, "/albums/:albumId"),
+	ApiHeadMainPage:     apiHead("/"),
+	ApiGetMainPage:      apiGet("/"),
+	ApiGetStaticAssets:  apiGet("/*filepath", groupStatic),
+	ApiHeadStaticAssets: apiHead("/*filepath", groupStatic),
+	ApiGetAppInfo:       apiGet("/appinfo", groupApi),
+	ApiGetAlbums:        apiGet("/albums/", groupApi),
+	ApiCreateAlbums:     apiPut("/albums/", groupApi),
+	ApiUpdateAlbums:     apiPost("/albums/", groupApi),
+	ApiGetAlbumsById:    apiGet("/albums/:albumId", groupApi),
+	ApiDeleteAlbumsById: apiDelete("/albums/:albumId", groupApi),
 }

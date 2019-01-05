@@ -1,3 +1,4 @@
 package api
 
-var ApiVersion = "v1"
+// Api Version
+const ApiVersion = "v1"

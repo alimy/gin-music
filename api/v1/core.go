@@ -38,7 +38,12 @@ func InstallDefault(router gin.IRouter) {
 // InstallWith install router to give groups's operation in OperationIds
 func InstallWith(router gin.IRouter, groups ...string) {
 	for _, group := range groups {
-		r := router.Group(group)
+		var r gin.IRouter
+		if group == "" {
+			r = router
+		} else {
+			r = router.Group(group)
+		}
 		for _, operation := range OperationIds {
 			if operation.Group == group && operation.Handler != nil {
 				r.Handle(operation.Method, operation.Path, operation.Handler)
@@ -47,22 +52,42 @@ func InstallWith(router gin.IRouter, groups ...string) {
 	}
 }
 
-func apiGet(group, path string) *Operation {
-	return &Operation{Group: group, Path: path, Method: http.MethodGet}
+// build GET operation
+func apiGet(path string, groups ...string) *Operation {
+	if len(groups) == 1 {
+		return &Operation{Group: groups[0], Path: path, Method: http.MethodGet}
+	}
+	return &Operation{Path: path, Method: http.MethodGet}
 }
 
-func apiPut(group, path string) *Operation {
-	return &Operation{Group: group, Path: path, Method: http.MethodPut}
+// build GET operation
+func apiPut(path string, groups ...string) *Operation {
+	if len(groups) == 1 {
+		return &Operation{Group: groups[0], Path: path, Method: http.MethodPut}
+	}
+	return &Operation{Path: path, Method: http.MethodPut}
 }
 
-func apiPost(group, path string) *Operation {
-	return &Operation{Group: group, Path: path, Method: http.MethodPost}
+// build POST operation
+func apiPost(path string, groups ...string) *Operation {
+	if len(groups) == 1 {
+		return &Operation{Group: groups[0], Path: path, Method: http.MethodPost}
+	}
+	return &Operation{Path: path, Method: http.MethodPost}
 }
 
-func apiDelete(group, path string) *Operation {
-	return &Operation{Group: group, Path: path, Method: http.MethodDelete}
+// build DELETE operation
+func apiDelete(path string, groups ...string) *Operation {
+	if len(groups) == 1 {
+		return &Operation{Group: groups[0], Path: path, Method: http.MethodDelete}
+	}
+	return &Operation{Path: path, Method: http.MethodDelete}
 }
 
-func apiHead(group, path string) *Operation {
-	return &Operation{Group: group, Path: path, Method: http.MethodHead}
+// build HEAD operation
+func apiHead(path string, groups ...string) *Operation {
+	if len(groups) == 1 {
+		return &Operation{Group: groups[0], Path: path, Method: http.MethodHead}
+	}
+	return &Operation{Path: path, Method: http.MethodHead}
 }
