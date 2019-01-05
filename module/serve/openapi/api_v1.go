@@ -1,4 +1,4 @@
-package serve
+package openapi
 
 import (
 	"github.com/alimy/gin-music/api/v1"

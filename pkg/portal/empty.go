@@ -1,7 +1,5 @@
-// +build !portal
-
 package portal
 
 func init() {
-	// Empty
+	// Empty for avoid package imported warning
 }

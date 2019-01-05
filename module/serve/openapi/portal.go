@@ -1,9 +1,10 @@
 // +build portal
 
-package portal
+package openapi
 
 import (
 	"github.com/alimy/gin-music/api/v1"
+	"github.com/alimy/gin-music/pkg/portal"
 	"github.com/elazarl/go-bindata-assetfs"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -11,9 +12,9 @@ import (
 
 func init() {
 	assetFS := &assetfs.AssetFS{
-		Asset:     Asset,
-		AssetDir:  AssetDir,
-		AssetInfo: AssetInfo}
+		Asset:     portal.Asset,
+		AssetDir:  portal.AssetDir,
+		AssetInfo: portal.AssetInfo}
 
 	mainHandler := createStaticHandler("/", assetFS)
 	staticHandler := createStaticHandler("/static", assetFS)

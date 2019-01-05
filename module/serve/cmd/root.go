@@ -9,8 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/alimy/gin-music/module/serve"
-	_ "github.com/alimy/gin-music/pkg/portal"
+	_ "github.com/alimy/gin-music/module/serve/openapi"
 )
 
 const (

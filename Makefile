@@ -1,6 +1,6 @@
 .PHONY: default build serve bindata api fmt clean distclean
 
-TAGS = debug portal
+TAGS = release portal
 PORTAL_DATA_FILES := $(shell find portal | sed 's/  /\\ /g')
 ASSETS_DATA_FILES := $(shell find assets | sed 's/  /\\ /g')
 GENERATED := pkg/assets/bindata.go pkg/portal/bindata.go
