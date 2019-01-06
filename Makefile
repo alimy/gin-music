@@ -14,7 +14,7 @@ build: fmt bindata
 	go build -ldflags '$(LDFLAGS)' -tags '$(TAGS)' -o gin-music
 
 serve: fmt bindata
-	go run -ldflags '$(LDFLAGS)' -tags '$(TAGS)' github.com/alimy/gin-music serve
+	go run -ldflags '$(LDFLAGS)' -tags '$(TAGS)' github.com/alimy/gin-music serve --debug --addr :8013
 
 fmt:
 	go fmt ./...
