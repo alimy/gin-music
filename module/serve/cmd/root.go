@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"time"
 
+	_ "github.com/alimy/gin-music/models"
 	_ "github.com/alimy/gin-music/module/serve/openapi"
 )
 

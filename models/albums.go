@@ -1,6 +1,6 @@
 package models
 
-type Albums struct {
+type Album struct {
 	Id          string
 	Title       string
 	Artist      string
@@ -8,4 +8,8 @@ type Albums struct {
 	Genre       string
 	TrackCount  int
 	AlbumId     string
+}
+
+type Albums struct {
+	AlbumSlice []Album
 }
