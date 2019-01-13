@@ -3,13 +3,13 @@ package cmd
 import (
 	"github.com/alimy/gin-music/api/v1"
 	"github.com/alimy/gin-music/cmd"
+	"github.com/alimy/gin-music/models"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
 	"github.com/unisx/logus"
 	"net/http"
 	"time"
 
-	_ "github.com/alimy/gin-music/models"
 	_ "github.com/alimy/gin-music/module/serve/openapi"
 )
 
@@ -47,9 +47,7 @@ func init() {
 }
 
 func serveRun(cmd *cobra.Command, args []string) {
-	if !inDebug {
-		logus.InProduction()
-	}
+	setup()
 
 	// Instance a default gin engine
 	e := gin.Default()
@@ -75,5 +73,17 @@ func serveRun(cmd *cobra.Command, args []string) {
 			logus.String("address", address),
 			logus.Bool("enableHttps", enableHttps))
 		server.ListenAndServe()
+	}
+}
+
+func setup() {
+	if !inDebug {
+		logus.InProduction()
+		gin.SetMode(gin.ReleaseMode)
+	}
+
+	// initial models with MemoryProfile
+	if err := models.Register(models.MemoryProfile); err != nil {
+		panic(err)
 	}
 }

@@ -1,15 +1,15 @@
 package models
 
+// Album indicate album info
 type Album struct {
-	Id          string
-	Title       string
-	Artist      string
-	ReleaseYear string
-	Genre       string
-	TrackCount  int
-	AlbumId     string
+	Id          string `json:"id,omitempty"`
+	Title       string `json:"title"`
+	Artist      string `json:"artist"`
+	ReleaseYear string `json:"releaseYear"`
+	Genre       string `json:"genre"`
+	TrackCount  int    `json:"-"`
+	AlbumId     string `json:"albumId,omitempty"`
 }
 
-type Albums struct {
-	AlbumSlice []Album
-}
+// Albums indicate album slice
+type Albums []*Album
