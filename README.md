@@ -6,7 +6,7 @@ This project is inspiration like [spring-music](https://github.com/cloudfoundry-
 ```bash
 $ git clone https://github.com/alimy/gin-music
 $ cd gin-music
-$ make serve
+$ make serve # visit in browser http://localhost:8013/
 ```
 
 ### OpenApi documents

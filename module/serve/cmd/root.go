@@ -1,16 +1,16 @@
 package cmd
 
 import (
+	"github.com/alimy/gin-music/api"
 	"github.com/alimy/gin-music/api/v1"
 	"github.com/alimy/gin-music/cmd"
 	"github.com/alimy/gin-music/models"
+	"github.com/alimy/gin-music/module/serve/openapi"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
 	"github.com/unisx/logus"
 	"net/http"
 	"time"
-
-	_ "github.com/alimy/gin-music/module/serve/openapi"
 )
 
 const (
@@ -53,7 +53,10 @@ func serveRun(cmd *cobra.Command, args []string) {
 	e := gin.Default()
 
 	// Install api router
-	api.InstallDefault(e)
+	api.InstallDefault(v1.Version, e)
+
+	// Delete all resource that used to register api to gin's engine
+	api.RecycleAll()
 
 	// Setup http.Server
 	server := &http.Server{
@@ -86,4 +89,7 @@ func setup() {
 	if err := models.Register(models.MemoryProfile); err != nil {
 		panic(err)
 	}
+
+	// Register mina api to global
+	openapi.RegisterApi()
 }

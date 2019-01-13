@@ -1,4 +1,6 @@
-package api
+package v1
 
-// Api Version
-const ApiVersion = "v1"
+const (
+	// Version api version info
+	Version = "v1"
+)
